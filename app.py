@@ -1,6 +1,9 @@
 from flask import Flask, jsonify
 
+from lookup import bp as lookup_bp
+
 app = Flask(__name__)
+app.register_blueprint(lookup_bp)
 
 
 @app.route("/")

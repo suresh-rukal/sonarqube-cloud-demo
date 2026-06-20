@@ -1,0 +1,21 @@
+---
+description: Use SonarQube MCP tools to verify code quality on every change
+alwaysApply: true
+---
+
+# SonarQube verification policy
+
+Whenever you write, edit, or refactor code in this project:
+
+1. **Before writing**, briefly consult the SonarQube MCP tools to check
+   relevant rules and best practices for the language and feature.
+2. **After writing**, use the SonarQube MCP tools to analyze your changes
+   for issues — especially security vulnerabilities, bugs, and code smells.
+3. Only suggest committing the change once Sonar reports no new issues.
+4. If Sonar reports issues, fix them and re-verify before suggesting commit.
+
+Project context:
+- SonarQube Cloud organization: suresh-rukal
+- Project key: suresh-rukal_sonarqube-cloud-demo
+
+This is part of the AC/DC workflow: **Guide → Solve → Verify**.

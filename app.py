@@ -17,27 +17,27 @@ def health():
     return jsonify(status="ok")
 
 
-@app.route("/user")
+@app.route("/user", methods=["GET"])
 def get_user():
     """Look up a user by id from the database."""
     user_id = request.args.get("id")
     conn = sqlite3.connect("app.db")
     cursor = conn.cursor()
     # Planted issue 1 (security): user input concatenated into SQL -> SQL injection
-    query = "SELECT * FROM users WHERE id = '" + user_id + "'"
-    cursor.execute(query)
+    query = "SELECT * FROM users WHERE id = ?"
+    cursor.execute(query, (user_id,))
     rows = cursor.fetchall()
     conn.close()
     return jsonify(users=rows)
 
 
-@app.route("/status/<int:code>")
+@app.route("/status/<int:code>", methods=["GET"])
 def status_label(code):
     """Return a human-readable label for a status code."""
     # Planted issue 2 (reliability): duplicate branch condition -> second is unreachable
     if code == 200:
         return jsonify(label="ok")
-    elif code == 200:
+    elif code == 409:
         return jsonify(label="duplicate")
     return jsonify(label="other")
 
